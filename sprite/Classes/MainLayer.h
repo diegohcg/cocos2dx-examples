@@ -9,6 +9,11 @@ class MainLayer : public CCLayer
 {
 public:
     virtual bool init();
+
+    CREATE_FUNC(MainLayer);
+
+private:
+    void createSprite();
 };
 
 #endif

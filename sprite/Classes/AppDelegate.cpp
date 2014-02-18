@@ -4,8 +4,6 @@
 
 USING_NS_CC;
 
-using namespace std;
-
 AppDelegate::AppDelegate()
 {
 }
@@ -24,10 +22,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     const CCSize &frameSize = eglView->getFrameSize();
     eglView->setDesignResolutionSize(frameSize.width, frameSize.height, kResolutionNoBorder);
 
-    CCScene *scene = CCScene::create();
-    CCLayer *layer = MainLayer::create();
-    scene->addChild(layer);
-
+    CCScene *scene = createMainScene();
     director->runWithScene(scene);
 
     return true;
@@ -41,4 +36,13 @@ void AppDelegate::applicationDidEnterBackground()
 void AppDelegate::applicationWillEnterForeground()
 {
     CCDirector::sharedDirector()->startAnimation();
+}
+
+CCScene *AppDelegate::createMainScene()
+{
+    CCScene *scene = CCScene::create();
+    MainLayer *layer = MainLayer::create();
+    scene->addChild(layer);
+
+    return scene;
 }

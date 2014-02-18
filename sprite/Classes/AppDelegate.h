@@ -5,7 +5,7 @@
 
 USING_NS_CC;
 
-class AppDelegate : private cocos2d::CCApplication
+class AppDelegate : private CCApplication
 {
 public:
     AppDelegate();
@@ -14,6 +14,9 @@ public:
     virtual bool applicationDidFinishLaunching();
     virtual void applicationDidEnterBackground();
     virtual void applicationWillEnterForeground();
+
+private:
+    CCScene *createMainScene();
 };
 
 #endif
