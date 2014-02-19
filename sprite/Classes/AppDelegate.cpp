@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 
-#include "MainLayer.h"
+#include "SpriteLayer.h"
 
 USING_NS_CC;
 
@@ -41,7 +41,7 @@ void AppDelegate::applicationWillEnterForeground()
 CCScene *AppDelegate::createMainScene()
 {
     CCScene *scene = CCScene::create();
-    MainLayer *layer = MainLayer::create();
+    SpriteLayer *layer = SpriteLayer::create();
     scene->addChild(layer);
 
     return scene;

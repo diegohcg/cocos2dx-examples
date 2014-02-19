@@ -9,7 +9,8 @@ INCLUDES += \
 
 SOURCES = main.cpp \
 		  $(CLASS_ROOT)/AppDelegate.cpp \
-		  $(CLASS_ROOT)/MainLayer.cpp \
+		  $(CLASS_ROOT)/SpriteLayer.cpp \
+		  $(CLASS_ROOT)/Sprite.cpp \
 
 include ./cocos2dx.mk
 
