@@ -6,6 +6,10 @@
 #include "CCLongPressGestureRecognizer.h"
 #include "CCPanGestureRecognizer.h"
 
+int scrollSpeed = 328;
+CCSprite *background1, *background2;
+CCSize winSize = ccp(800/2, 480/2);//CCDirector::sharedDirector()->getWinSize();// / 2;
+
 SpriteLayer::SpriteLayer()
     : m_sprite(0)
 {
@@ -17,37 +21,57 @@ bool SpriteLayer::init()
     if (!CCLayer::init())
         return false;
 
-    /*CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    CCSprite *background1 = CCSprite::create("background.png");
-    CCSprite *background2 = CCSprite::create("background.png");
-    CCPoint dustSpeed = ccp(0.1, 0.1);
+    background1 = CCSprite::create("background.png");
+    background1->setPosition(ccp(0, 0));
+    CCPoint point = CCDirector::sharedDirector()->convertToGL(ccp(0,0));
+    CCLog("get scale: %lf, %lf", point.x, point.y);
+    //background1->setFlipX(true);
+    //background2 = CCSprite::create("background.png");
+    //background2->setFlipX(true);
 
-    voidNode = CCParallaxNode::create();
-    voidNode->addChild(background1, 0, dustSpeed, ccp(0,winSize.height/2));
-    voidNode->addChild(background2, 0, dustSpeed, ccp(background1->getContentSize().width,winSize.height/2));
-    addChild(voidNode);*/
-
+    background1->setPosition(ccp(winSize.width, winSize.height));
+    //background2->setPosition(ccp(3*winSize.width, winSize.height));
     /*CCActionInterval *go = CCMoveBy::create(8, ccp(-1600, 0));
     CCActionInterval *goRev = CCMoveBy::create(8, ccp(1600, 0));
     CCActionInterval *seq = CCSequence::create(go, goRev, 0);
     voidNode->runAction(CCRepeatForever::create(seq));
     */
+    //add them to main layer
+    addChild(background1);
+    //addChild(background2);
     createSprite();
 
-    //scheduleUpdate();
+    scheduleUpdate();
     return true;
 }
 
 void SpriteLayer::update(float dt)
 {
-    CCLog("%s", __PRETTY_FUNCTION__);
-    CCPoint backgroundScrollVert = ccp(-1600, 0);
-    voidNode->setPosition(ccpAdd(voidNode->getPosition(), ccpMult(backgroundScrollVert, dt)));
+    //CCLog("%s", __PRETTY_FUNCTION__);
+    //scrollBackground(scrollSpeed*dt);
+}
+
+void SpriteLayer::scrollBackground(float scrollSpeed)
+{
+    //CCActionInterval *go = CCMoveBy::create(scrollSpeed, ccp(-100,  0));
+    //runAction(go);
+    background1->setPosition(ccp( background1->getPosition().x - scrollSpeed,  background1->getPosition().y ));
+    background2->setPosition(ccp( background2->getPosition().x  - scrollSpeed, background2->getPosition().y ));
+
+    if(background1->getPosition().x<=-winSize.width) {
+        float offset = background1->getPosition().x+winSize.width;
+        background1->setPosition(ccp( winSize.width*3+offset, background1->getPosition().y  ));
+    }
+    if(background2->getPosition().x<=-winSize.width){
+        float offset=background2->getPosition().x+winSize.width;
+        background2->setPosition(ccp(winSize.width*3+offset, background2->getPosition().y  ));
+    }
 }
 
 void SpriteLayer::createSprite()
 {
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    CCLog("Win Size: (%lf, %lf)", winSize.width, winSize.height);
 
     CCSpriteBatchNode* spriteBatch = CCSpriteBatchNode::create("braid_guy.png");
     addChild(spriteBatch);

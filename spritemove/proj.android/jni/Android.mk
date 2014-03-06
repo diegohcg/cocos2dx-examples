@@ -6,18 +6,24 @@ LOCAL_MODULE := SpriteMove_shared
 
 LOCAL_MODULE_FILENAME := libSpriteMove
 
-LOCAL_SRC_FILES := SpriteMove/main.cpp \
+LOCAL_SRC_FILES := \
+				SpriteMove/main.cpp \
+				../../Classes/CCGestureRecognizer/CCLongPressGestureRecognizer.cpp \
+				../../Classes/CCGestureRecognizer/CCGestureRecognizer.cpp \
+				../../Classes/CCGestureRecognizer/CCPanGestureRecognizer.cpp \
+				../../Classes/CCGestureRecognizer/CCPinchGestureRecognizer.cpp \
+				../../Classes/CCGestureRecognizer/CCSwipeGestureRecognizer.cpp \
+				../../Classes/CCGestureRecognizer/CCTapGestureRecognizer.cpp \
 				../../Classes/AppDelegate.cpp \
 				../../Classes/SpriteLayer.cpp \
-				../../Classes/Sprite.cpp
+				../../Classes/Sprite.cpp \
 
 LOCAL_C_INCLUDES := \
 		$(LOCAL_PATH)/../../Classes \
-		$(COCOS2DX_ROOT)/extensions/CCGestureRecognizer
+		$(LOCAL_PATH)/../../Classes/CCGestureRecognizer
 
-LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static cocos_extension_static
+LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 
 include $(BUILD_SHARED_LIBRARY)
 
 $(call import-module, cocos2dx)
-$(call import-module,extensions)

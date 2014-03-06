@@ -20,6 +20,7 @@ public:
     void didDoubleTap(CCObject *obj);
     void didLongPress(CCObject *obj);
     void didPan(CCObject *obj);
+    void scrollBackground(float scrollSpeed);
 
 private:
     void createSprite();
