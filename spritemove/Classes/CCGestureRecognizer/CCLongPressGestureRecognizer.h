@@ -43,7 +43,7 @@ public:
     ~CCLongPressGestureRecognizer();
     CREATE_FUNC(CCLongPressGestureRecognizer);
     void timerDidEnd(float dt);
-    
+
     virtual bool ccTouchBegan(cocos2d::CCTouch * pTouch, cocos2d::CCEvent * pEvent);
     virtual void ccTouchMoved(cocos2d::CCTouch * pTouch, cocos2d::CCEvent * pEvent){};
     virtual void ccTouchEnded(cocos2d::CCTouch * pTouch, cocos2d::CCEvent * pEvent);
@@ -53,7 +53,7 @@ private:
     cocos2d::CCPoint currLocation;
     cocos2d::CCTouch * currTouch;
     cocos2d::CCEvent * currEvent;
-    
+
     void stopGestureRecognition();
 };
 

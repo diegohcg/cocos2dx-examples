@@ -29,25 +29,25 @@ bool CCLongPressGestureRecognizer::init()
     isRecognizing = false;
     currTouch = NULL;
     currEvent = NULL;
-    
+
     setMinimumPressDuration(kLongPressMinDuration);
-    
+
     return true;
 }
 
 CCLongPressGestureRecognizer::~CCLongPressGestureRecognizer()
 {
-    
+
 }
 
 void CCLongPressGestureRecognizer::timerDidEnd(float dt)
 {
     CCLongPress * longPress = CCLongPress::create();
     longPress->location = currLocation;
-    
+
     gestureRecognized(longPress);
     if (cancelsTouchesInView) stopTouchesPropagation(createSetWithTouch(currTouch), currEvent); //cancel touch over other views
-    
+
     stopGestureRecognition();
 }
 
@@ -57,15 +57,15 @@ bool CCLongPressGestureRecognizer::ccTouchBegan(CCTouch * pTouch, CCEvent * pEve
         stopGestureRecognition();
         return false;
     }
-    
+
     currLocation = pTouch->getLocation();
     if (!isPositionBetweenBounds(currLocation)) return false;
-    
+
     currEvent = pEvent;
     currTouch = pTouch;
-    
+
     schedule(schedule_selector(CCLongPressGestureRecognizer::timerDidEnd), minimumPressDuration);
-    
+
     isRecognizing = true;
     return true;
 }
@@ -78,7 +78,7 @@ void CCLongPressGestureRecognizer::ccTouchEnded(CCTouch * pTouch, CCEvent * pEve
 void CCLongPressGestureRecognizer::stopGestureRecognition()
 {
     if (!isRecognizing) return;
-    
+
     currTouch = NULL;
     currEvent = NULL;
     unschedule(schedule_selector(CCLongPressGestureRecognizer::timerDidEnd));

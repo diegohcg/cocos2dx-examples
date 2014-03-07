@@ -21,6 +21,9 @@ public:
     void didLongPress(CCObject *obj);
     void didPan(CCObject *obj);
     void scrollBackground(float scrollSpeed);
+    void updateBgPosition(CCSprite* pBg, int updateSteps);
+    void updateBg(int steps);
+    void moveSprite(int steps);
 
 private:
     void createSprite();
