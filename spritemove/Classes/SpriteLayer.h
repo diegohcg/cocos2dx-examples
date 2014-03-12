@@ -21,9 +21,11 @@ public:
     void didLongPress(CCObject *obj);
     void didPan(CCObject *obj);
     void scrollBackground(float scrollSpeed);
-    void updateBgPosition(CCSprite* pBg, int updateSteps);
-    void updateBg(int steps);
+    void updateBgPosition(CCSprite* pBg, int updateSteps, float dt);
+    void moveBg(int steps);
+    void updateBg(int vel);
     void moveSprite(int steps);
+    void setVel(int vel) { m_vel = vel; }
 
 private:
     void createSprite();
@@ -31,7 +33,10 @@ private:
     void update(float dt);
 
     Sprite *m_sprite;
-    CCParallaxNode *voidNode;
+    CCParallaxNode *node;
+    std::map<int, CCSprite*> m_bgMap;
+    float m_bgWidth;
+    int m_vel;
 };
 
 #endif

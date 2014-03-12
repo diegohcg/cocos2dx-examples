@@ -18,11 +18,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCEGLView *eglView = CCEGLView::sharedOpenGLView();
 
     director->setOpenGLView(eglView);
+    director->setDisplayStats(true);
 
-//    const CCSize &frameSize = eglView->getFrameSize();
-//    eglView->setDesignResolutionSize(frameSize.width, frameSize.height, kResolutionNoBorder);
-
-    CCEGLView::sharedOpenGLView()->setDesignResolutionSize(1600, 900, kResolutionExactFit);
+    CCEGLView::sharedOpenGLView()->setDesignResolutionSize(800, 600, kResolutionExactFit);
     CCScene *scene = createMainScene();
     director->runWithScene(scene);
 

@@ -2,8 +2,8 @@
 
 #include "AppDelegate.h"
 
-#define WIDTH 1600
-#define HEIGHT 900
+#define WIDTH 800
+#define HEIGHT 480
 
 USING_NS_CC;
 
